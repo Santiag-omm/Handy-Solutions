@@ -9,6 +9,7 @@ Sistema web para gestión de solicitudes de reparación en el hogar: clientes so
 - **Backend:** Laravel 12, PHP 8.2
 - **Base de datos:** MySQL (PlanetScale)
 - **Infraestructura:** Railway (Hosting)
+- **Dominio:** Gratuito (*.up.railway.app) o Personalizado (Cloudflare)
 - **Frontend:** Bootstrap 5, Blade, JavaScript
 - **Seguridad:** CSRF, validación, roles, subida segura de archivos
 
