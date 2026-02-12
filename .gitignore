@@ -21,3 +21,19 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# Monorepo: Laravel backend/
+/backend/vendor
+/backend/node_modules
+/backend/public/storage
+/backend/public/assets
+/backend/storage/*.key
+/backend/storage/app/public
+/backend/storage/app/private
+/backend/storage/framework
+/backend/storage/logs
+/backend/bootstrap/cache
+
+# Monorepo: Vite frontend/
+/frontend/node_modules
+/frontend/dist
