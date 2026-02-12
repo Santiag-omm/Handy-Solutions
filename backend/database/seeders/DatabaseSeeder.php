@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             ServicioSeeder::class,
             FaqSeeder::class,
             AdminSeeder::class,
+            AdminUserSeeder::class,
         ]);
     }
 }
