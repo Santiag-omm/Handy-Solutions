@@ -1,5 +1,6 @@
 // Vista de Galería
 import { galeriaService } from '../services/services';
+import { BACKEND_URL } from '../services/api.js';
 import { t, languageSelectorHTML } from '../i18n.js';
 
 export class GaleriaView {
@@ -68,7 +69,7 @@ export class GaleriaView {
         return trabajosToShow.map(trabajo => `
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow-sm galeria-card">
-                    <img src="/storage/${trabajo.imagen}" 
+                    <img src="${BACKEND_URL}/storage/${trabajo.imagen}" 
                          alt="${trabajo.titulo}" 
                          class="card-img-top" 
                          style="height:250px;object-fit:cover;cursor:pointer"
@@ -169,7 +170,7 @@ export class GaleriaView {
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <img src="/storage/${image}" alt="${title}" class="img-fluid rounded">
+                        <img src="${BACKEND_URL}/storage/${image}" alt="${title}" class="img-fluid rounded">
                         ${description ? `<p class="mt-3">${description}</p>` : ''}
                     </div>
                 </div>

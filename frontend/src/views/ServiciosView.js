@@ -1,5 +1,6 @@
 // Vista de Servicios
 import { serviciosService } from '../services/services';
+import { BACKEND_URL } from '../services/api.js';
 import { t, languageSelectorHTML } from '../i18n.js';
 
 export class ServiciosView {
@@ -62,7 +63,7 @@ export class ServiciosView {
             <div class="col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm servicio-card">
                     ${servicio.imagen 
-                        ? `<img src="/storage/${servicio.imagen}" class="card-img-top" alt="${servicio.nombre}" style="height:200px;object-fit:cover">`
+                        ? `<img src="${BACKEND_URL}/storage/${servicio.imagen}" class="card-img-top" alt="${servicio.nombre}" style="height:200px;object-fit:cover">`
                         : `<div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height:200px">
                             <i class="bi bi-tools display-4 text-white"></i>
                           </div>`

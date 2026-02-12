@@ -6,7 +6,7 @@ export default defineConfig({
         tailwindcss(),
     ],
     build: {
-        outDir: '../backend/public/assets',
+        outDir: 'dist',
         emptyOutDir: true,
     },
     server: {

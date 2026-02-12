@@ -7,8 +7,10 @@ import axios from 'axios';
  * - `baseURL: '/api'` funciona con el proxy de Vite hacia Laravel.
  * - La autenticación se maneja con token en el header Authorization.
  */
+export const BACKEND_URL = import.meta.env.VITE_API_URL || '';
+
 const api = axios.create({
-    baseURL: '/api',
+    baseURL: `${BACKEND_URL}/api`,
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
