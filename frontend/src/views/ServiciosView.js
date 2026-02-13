@@ -64,10 +64,8 @@ export class ServiciosView {
             <div class="col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm servicio-card">
                     ${servicio.imagen 
-                        ? `<img src="${BACKEND_URL}/storage/${servicio.imagen}" class="card-img-top" alt="${servicio.nombre}" style="height:200px;object-fit:cover">`
-                        : `<div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height:200px">
-                            <i class="bi bi-tools display-4 text-white"></i>
-                          </div>`
+                        ? `<img src="${BACKEND_URL}/storage/${servicio.imagen}" class="card-img-top" alt="${servicio.nombre}" style="height:200px;object-fit:cover" onerror="this.src='https://images.unsplash.com/photo-${this.getPlaceholderImage(servicio.nombre)}?w=400&h=300&fit=crop&auto=format'">`
+                        : `<img src="https://images.unsplash.com/photo-${this.getPlaceholderImage(servicio.nombre)}?w=400&h=300&fit=crop&auto=format" class="card-img-top" alt="${servicio.nombre}" style="height:200px;object-fit:cover">`
                     }
                     <div class="card-body">
                         <h5 class="card-title">${servicio.nombre}</h5>
@@ -143,9 +141,33 @@ export class ServiciosView {
         return user ? JSON.parse(user) : null;
     }
 
-    truncateText(text, length) {
+    truncateText(text, maxLength) {
         if (!text) return '';
-        return text.length > length ? text.substring(0, length) + '...' : text;
+        return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+    }
+
+    getPlaceholderImage(servicioNombre) {
+        const nombre = servicioNombre.toLowerCase();
+        
+        if (nombre.includes('plomer') || nombre.includes('agua')) {
+            return '1581094794329-c8112a89af12';
+        } else if (nombre.includes('electric') || nombre.includes('luz')) {
+            return '1581092794329-c8112a89af12';
+        } else if (nombre.includes('carpinter') || nombre.includes('madera')) {
+            return '1581092794329-c8112a89af12';
+        } else if (nombre.includes('pintur') || nombre.includes('color')) {
+            return '1581092794329-c8112a89af12';
+        } else if (nombre.includes('albañ') || nombre.includes('muro') || nombre.includes('construcc')) {
+            return '1581092796363-535d3b8c6d91';
+        } else if (nombre.includes('impermeabil') || nombre.includes('techumb')) {
+            return '1581092796363-535d3b8c6d91';
+        } else if (nombre.includes('baño') || nombre.includes('tina') || nombre.includes('regadera')) {
+            return '1581092796363-535d3b8c6d91';
+        } else if (nombre.includes('reparac') || nombre.includes('arreglo')) {
+            return '1581092794329-c8112a89af12';
+        } else {
+            return '1581092794329-c8112a89af12';
+        }
     }
 
     showError(message) {

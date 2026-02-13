@@ -71,7 +71,8 @@ export class GaleriaView {
             <div class="col-md-6 col-lg-4">
                 <div class="card shadow-sm galeria-card">
                     <img src="${BACKEND_URL}/storage/${trabajo.imagen}" 
-                         alt="${trabajo.titulo}" 
+                         alt="${trabajo.titulo}"
+                         onerror="this.src='https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=400&h=300&fit=crop&auto=format'" 
                          class="card-img-top" 
                          style="height:250px;object-fit:cover;cursor:pointer"
                          onclick="app.galeriaView.showImageModal('${trabajo.imagen}', '${trabajo.titulo}', '${trabajo.descripcion || ''}')">
@@ -171,7 +172,7 @@ export class GaleriaView {
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <img src="${BACKEND_URL}/storage/${image}" alt="${title}" class="img-fluid rounded">
+                        <img src="${BACKEND_URL}/storage/${image}" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=600&h=400&fit=crop&auto=format'" class="img-fluid rounded">
                         ${description ? `<p class="mt-3">${description}</p>` : ''}
                     </div>
                 </div>
