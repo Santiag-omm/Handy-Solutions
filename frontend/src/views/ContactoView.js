@@ -20,7 +20,7 @@ export class ContactoView {
             
             <main class="container flex-grow-1 py-4">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-lg-8">
                         <div class="card shadow">
                             <div class="card-header bg-primary text-white">
                                 <h4 class="mb-0">${t('contact.title')}</h4>
@@ -30,31 +30,41 @@ export class ContactoView {
                                 <div id="contactoSuccess" class="alert alert-success d-none" role="alert"></div>
                                 
                                 <form id="contactoForm">
-                                    <div class="mb-3">
-                                        <label class="form-label">${t('contact.name')} *</label>
-                                        <input type="text" name="nombre" class="form-control" required>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">${t('contact.name')} *</label>
+                                                <input type="text" name="nombre" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">${t('contact.email')} *</label>
+                                                <input type="email" name="email" class="form-control" required>
+                                            </div>
+                                        </div>
                                     </div>
                                     
-                                    <div class="mb-3">
-                                        <label class="form-label">${t('contact.email')} *</label>
-                                        <input type="email" name="email" class="form-control" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label class="form-label">${t('contact.phone')}</label>
-                                        <input type="tel" name="telefono" class="form-control" placeholder="${t('contact.phone_placeholder')}">
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label class="form-label">${t('contact.subject')} *</label>
-                                        <select name="asunto" class="form-select" required>
-                                            <option value="">${t('contact.subject_select')}</option>
-                                            <option value="consulta">${t('contact.subject_general')}</option>
-                                            <option value="servicio">${t('contact.subject_service')}</option>
-                                            <option value="cotizacion">${t('contact.subject_quote')}</option>
-                                            <option value="reclamo">${t('contact.subject_complaint')}</option>
-                                            <option value="otro">${t('contact.subject_other')}</option>
-                                        </select>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">${t('contact.phone')}</label>
+                                                <input type="tel" name="telefono" class="form-control" placeholder="${t('contact.phone_placeholder')}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">${t('contact.subject')} *</label>
+                                                <select name="asunto" class="form-select" required>
+                                                    <option value="">${t('contact.subject_select')}</option>
+                                                    <option value="consulta">${t('contact.subject_general')}</option>
+                                                    <option value="servicio">${t('contact.subject_service')}</option>
+                                                    <option value="cotizacion">${t('contact.subject_quote')}</option>
+                                                    <option value="reclamo">${t('contact.subject_complaint')}</option>
+                                                    <option value="otro">${t('contact.subject_other')}</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                     <div class="mb-3">
@@ -73,42 +83,75 @@ export class ContactoView {
                         </div>
                     </div>
                     
-                    <div class="col-md-4">
+                    <div class="col-lg-4">
                         <div class="card shadow mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">${t('contact.info')}</h5>
-                                <div class="mb-3">
-                                    <strong><i class="bi bi-geo-alt"></i> ${t('contact.address')}:</strong><br>
-                                    Calle Principal #123, Colonia Centro<br>
-                                    Ciudad, Estado, CP 12345
+                                <div class="mb-3 contact-info-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-geo-alt text-primary me-3 mt-1"></i>
+                                        <div>
+                                            <strong>${t('contact.address')}</strong><br>
+                                            <small class="text-muted">Calle Principal #123, Colonia Centro<br>Ciudad, Estado, CP 12345</small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <strong><i class="bi bi-telephone"></i> ${t('contact.phone_label')}:</strong><br>
-                                    (555) 123-4567<br>
-                                    (555) 891-0123
+                                <div class="mb-3 contact-info-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-telephone text-primary me-3 mt-1"></i>
+                                        <div>
+                                            <strong>${t('contact.phone_label')}</strong><br>
+                                            <small class="text-muted">
+                                                <a href="tel:5551234567" class="text-decoration-none">(555) 123-4567</a><br>
+                                                <a href="tel:5558910123" class="text-decoration-none">(555) 891-0123</a>
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <strong><i class="bi bi-envelope"></i> ${t('contact.email_label')}:</strong><br>
-                                    info@handysolutions.com<br>
-                                    soporte@handysolutions.com
+                                <div class="mb-3 contact-info-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-envelope text-primary me-3 mt-1"></i>
+                                        <div>
+                                            <strong>${t('contact.email_label')}</strong><br>
+                                            <small class="text-muted">
+                                                <a href="mailto:info@handysolutions.com" class="text-decoration-none">info@handysolutions.com</a><br>
+                                                <a href="mailto:soporte@handysolutions.com" class="text-decoration-none">soporte@handysolutions.com</a>
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <strong><i class="bi bi-clock"></i> ${t('contact.hours')}:</strong><br>
-                                    ${t('contact.hours_text')}<br>
-                                    Sábados: 9:00 AM - 2:00 PM<br>
-                                    Domingos: Cerrado
+                                <div class="mb-3 contact-info-item">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-clock text-primary me-3 mt-1"></i>
+                                        <div>
+                                            <strong>${t('contact.hours')}</strong><br>
+                                            <small class="text-muted">${t('contact.hours_text')}<br>Sábados: 9:00 AM - 2:00 PM<br>Domingos: Cerrado</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="card shadow">
                             <div class="card-body">
-                                <h5 class="card-title">Síguenos en Redes</h5>
-                                <div class="d-flex justify-content-around">
-                                    <a href="#" class="text-primary fs-4"><i class="bi bi-facebook"></i></a>
-                                    <a href="#" class="text-info fs-4"><i class="bi bi-twitter"></i></a>
-                                    <a href="#" class="text-danger fs-4"><i class="bi bi-instagram"></i></a>
-                                    <a href="#" class="text-primary fs-4"><i class="bi bi-linkedin"></i></a>
+                                <h5 class="card-title mb-4">${t('footer.follow_us')}</h5>
+                                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                    <a href="https://facebook.com" target="_blank" class="btn btn-outline-primary btn-sm social-btn d-flex align-items-center">
+                                        <i class="bi bi-facebook me-2"></i>
+                                        <span class="d-none d-md-inline">Facebook</span>
+                                    </a>
+                                    <a href="https://instagram.com" target="_blank" class="btn btn-outline-danger btn-sm social-btn d-flex align-items-center">
+                                        <i class="bi bi-instagram me-2"></i>
+                                        <span class="d-none d-md-inline">Instagram</span>
+                                    </a>
+                                    <a href="https://twitter.com" target="_blank" class="btn btn-outline-info btn-sm social-btn d-flex align-items-center">
+                                        <i class="bi bi-twitter me-2"></i>
+                                        <span class="d-none d-md-inline">Twitter</span>
+                                    </a>
+                                    <a href="https://wa.me/5551234567" target="_blank" class="btn btn-outline-success btn-sm social-btn d-flex align-items-center">
+                                        <i class="bi bi-whatsapp me-2"></i>
+                                        <span class="d-none d-md-inline">WhatsApp</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

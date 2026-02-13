@@ -202,6 +202,41 @@ globalStyles.textContent = `
         }
     }
     
+    /* Contacto page responsive */
+    .contact-info-item {
+        border-left: 3px solid #3498db;
+        padding-left: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .social-btn {
+        transition: all 0.3s ease;
+        min-width: 120px;
+    }
+    
+    .social-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    @media (max-width: 768px) {
+        .social-btn {
+            min-width: 100px;
+            font-size: 0.875rem;
+        }
+        
+        .social-btn span {
+            display: inline !important;
+        }
+        
+        .contact-info-item {
+            border-left: none;
+            border-left: 3px solid #3498db;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+    
     .card {
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     }
