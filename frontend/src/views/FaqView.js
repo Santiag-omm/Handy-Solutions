@@ -1,6 +1,7 @@
 // Vista de FAQ
 import { faqService } from '../services/services';
 import { t, languageSelectorHTML } from '../i18n.js';
+import { Footer } from '../components/footer.js';
 
 export class FaqView {
     constructor() {
@@ -65,7 +66,7 @@ export class FaqView {
                 </div>
             </main>
 
-            ${this.getFooterHTML()}
+            ${Footer.getHTML()}
         `;
     }
 

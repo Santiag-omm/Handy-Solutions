@@ -1,6 +1,7 @@
 // Vista de Registro
 import { authService } from '../services/services';
 import { t, languageSelectorHTML } from '../i18n.js';
+import { Footer } from '../components/footer.js';
 
 export class RegisterView {
     constructor() {
@@ -56,7 +57,7 @@ export class RegisterView {
                 </div>
             </main>
 
-            ${this.getFooterHTML()}
+            ${Footer.getHTML()}
         `;
     }
 

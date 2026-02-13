@@ -2,6 +2,7 @@
 import { serviciosService } from '../services/services';
 import { BACKEND_URL } from '../services/api.js';
 import { t, languageSelectorHTML } from '../i18n.js';
+import { Footer } from '../components/footer.js';
 
 export class ServiciosView {
     constructor() {
@@ -50,7 +51,7 @@ export class ServiciosView {
                 </div>
             </main>
 
-            ${this.getFooterHTML()}
+            ${Footer.getHTML()}
         `;
     }
 

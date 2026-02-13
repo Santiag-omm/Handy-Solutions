@@ -1,6 +1,7 @@
 // Vista de Login
 import { authService } from '../services/services';
 import { t, languageSelectorHTML } from '../i18n.js';
+import { Footer } from '../components/footer.js';
 
 export class LoginView {
     constructor() {
@@ -51,7 +52,7 @@ export class LoginView {
                 </div>
             </main>
 
-            ${this.getFooterHTML()}
+            ${Footer.getHTML()}
         `;
     }
 

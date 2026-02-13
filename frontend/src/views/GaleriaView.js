@@ -2,6 +2,7 @@
 import { galeriaService } from '../services/services';
 import { BACKEND_URL } from '../services/api.js';
 import { t, languageSelectorHTML } from '../i18n.js';
+import { Footer } from '../components/footer.js';
 
 export class GaleriaView {
     constructor() {
@@ -55,7 +56,7 @@ export class GaleriaView {
                 ` : ''}
             </main>
 
-            ${this.getFooterHTML()}
+            ${Footer.getHTML()}
         `;
     }
 
