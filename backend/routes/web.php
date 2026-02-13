@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\ClienteController;
 use App\Http\Controllers\Admin\ContactoController;
+use App\Http\Controllers\Admin\ContactoInfoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrdenTrabajoController;
 use App\Http\Controllers\Admin\PagoController;
@@ -47,6 +48,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::delete('contactos/{contacto}', [ContactoController::class, 'destroy'])->name('contactos.destroy');
         Route::post('contactos/marcar-leidos', [ContactoController::class, 'marcarLeidos'])->name('contactos.marcarLeidos');
         Route::post('contactos/eliminar-multiples', [ContactoController::class, 'eliminarMultiples'])->name('contactos.eliminarMultiples');
+        
+        Route::get('contacto-info', [ContactoInfoController::class, 'edit'])->name('contacto_info.edit');
+        Route::put('contacto-info', [ContactoInfoController::class, 'update'])->name('contacto_info.update');
 
         Route::get('solicitudes', [SolicitudAdminController::class, 'index'])->name('solicitudes.index');
         Route::get('solicitudes/{solicitud}', [SolicitudAdminController::class, 'show'])->name('solicitudes.show');

@@ -7,6 +7,9 @@
     <h1 class="h2">Mensajes de Contacto</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
+            <a href="{{ route('admin.contacto_info.edit') }}" class="btn btn-sm btn-outline-warning">
+                <i class="bi bi-pencil"></i> Editar Información
+            </a>
             <button type="button" class="btn btn-sm btn-outline-primary" onclick="marcarSeleccionadosLeidos()">
                 <i class="bi bi-check2"></i> Marcar como leídos
             </button>

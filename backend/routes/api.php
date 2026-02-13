@@ -17,6 +17,15 @@ Route::get('/faq', [FaqController::class, 'index']);
 // Ruta de contacto
 Route::post('/contacto', [ContactoController::class, 'enviar']);
 
+// Ruta para obtener información de contacto
+Route::get('/contacto-info', function () {
+    $info = \App\Models\ContactoInfo::getInfo();
+    return response()->json([
+        'success' => true,
+        'data' => $info
+    ]);
+});
+
 // Rutas de autenticación
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);

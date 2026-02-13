@@ -1,16 +1,28 @@
 // Vista de Contacto
 import { t, languageSelectorHTML } from '../i18n.js';
 import { contactoService } from '../services/contactoService.js';
+import { contactoInfoService } from '../services/contactoInfoService.js';
 import { Footer } from '../components/footer.js';
 
 export class ContactoView {
     constructor() {
+        this.contactoInfo = null;
         this.init();
     }
 
-    init() {
+    async init() {
+        await this.loadContactoInfo();
         this.render();
         this.bindEvents();
+    }
+
+    async loadContactoInfo() {
+        try {
+            const response = await contactoInfoService.getInfo();
+            this.contactoInfo = response.data;
+        } catch (error) {
+            console.error('Error al cargar información de contacto:', error);
+        }
     }
 
     render() {
@@ -87,12 +99,13 @@ export class ContactoView {
                         <div class="card shadow mb-4">
                             <div class="card-body">
                                 <h5 class="card-title">${t('contact.info')}</h5>
+                                ${this.contactoInfo ? `
                                 <div class="mb-3 contact-info-item">
                                     <div class="d-flex align-items-start">
                                         <i class="bi bi-geo-alt text-primary me-3 mt-1"></i>
                                         <div>
                                             <strong>${t('contact.address')}</strong><br>
-                                            <small class="text-muted">Calle Principal #123, Colonia Centro<br>Ciudad, Estado, CP 12345</small>
+                                            <small class="text-muted">${this.contactoInfo.direccion || 'No disponible'}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -102,8 +115,8 @@ export class ContactoView {
                                         <div>
                                             <strong>${t('contact.phone_label')}</strong><br>
                                             <small class="text-muted">
-                                                <a href="tel:5551234567" class="text-decoration-none">(555) 123-4567</a><br>
-                                                <a href="tel:5558910123" class="text-decoration-none">(555) 891-0123</a>
+                                                ${this.contactoInfo.telefono1 ? `<a href="tel:${this.contactoInfo.telefono1.replace(/[^\d]/g, '')}" class="text-decoration-none">${this.contactoInfo.telefono1}</a>` : 'No disponible'}<br>
+                                                ${this.contactoInfo.telefono2 ? `<a href="tel:${this.contactoInfo.telefono2.replace(/[^\d]/g, '')}" class="text-decoration-none">${this.contactoInfo.telefono2}</a>` : ''}
                                             </small>
                                         </div>
                                     </div>
@@ -114,8 +127,8 @@ export class ContactoView {
                                         <div>
                                             <strong>${t('contact.email_label')}</strong><br>
                                             <small class="text-muted">
-                                                <a href="mailto:info@handysolutions.com" class="text-decoration-none">info@handysolutions.com</a><br>
-                                                <a href="mailto:soporte@handysolutions.com" class="text-decoration-none">soporte@handysolutions.com</a>
+                                                ${this.contactoInfo.email1 ? `<a href="mailto:${this.contactoInfo.email1}" class="text-decoration-none">${this.contactoInfo.email1}</a>` : 'No disponible'}<br>
+                                                ${this.contactoInfo.email2 ? `<a href="mailto:${this.contactoInfo.email2}" class="text-decoration-none">${this.contactoInfo.email2}</a>` : ''}
                                             </small>
                                         </div>
                                     </div>
@@ -125,34 +138,53 @@ export class ContactoView {
                                         <i class="bi bi-clock text-primary me-3 mt-1"></i>
                                         <div>
                                             <strong>${t('contact.hours')}</strong><br>
-                                            <small class="text-muted">${t('contact.hours_text')}<br>Sábados: 9:00 AM - 2:00 PM<br>Domingos: Cerrado</small>
+                                            <small class="text-muted">${this.contactoInfo.horario || 'No disponible'}</small>
                                         </div>
                                     </div>
                                 </div>
+                            ` : `
+                                <div class="text-center py-3">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                </div>
+                            `}
                             </div>
                         </div>
                         
                         <div class="card shadow">
                             <div class="card-body">
                                 <h5 class="card-title mb-4">${t('footer.follow_us')}</h5>
+                                ${this.contactoInfo ? `
                                 <div class="d-flex justify-content-center gap-3 flex-wrap">
-                                    <a href="https://facebook.com" target="_blank" class="btn btn-outline-primary btn-sm social-btn d-flex align-items-center">
+                                    ${this.contactoInfo.facebook ? `
+                                    <a href="${this.contactoInfo.facebook}" target="_blank" class="btn btn-outline-primary btn-sm social-btn d-flex align-items-center">
                                         <i class="bi bi-facebook me-2"></i>
                                         <span class="d-none d-md-inline">Facebook</span>
-                                    </a>
-                                    <a href="https://instagram.com" target="_blank" class="btn btn-outline-danger btn-sm social-btn d-flex align-items-center">
+                                    </a>` : ''}
+                                    ${this.contactoInfo.instagram ? `
+                                    <a href="${this.contactoInfo.instagram}" target="_blank" class="btn btn-outline-danger btn-sm social-btn d-flex align-items-center">
                                         <i class="bi bi-instagram me-2"></i>
                                         <span class="d-none d-md-inline">Instagram</span>
-                                    </a>
-                                    <a href="https://twitter.com" target="_blank" class="btn btn-outline-info btn-sm social-btn d-flex align-items-center">
+                                    </a>` : ''}
+                                    ${this.contactoInfo.twitter ? `
+                                    <a href="${this.contactoInfo.twitter}" target="_blank" class="btn btn-outline-info btn-sm social-btn d-flex align-items-center">
                                         <i class="bi bi-twitter me-2"></i>
                                         <span class="d-none d-md-inline">Twitter</span>
-                                    </a>
-                                    <a href="https://wa.me/5551234567" target="_blank" class="btn btn-outline-success btn-sm social-btn d-flex align-items-center">
+                                    </a>` : ''}
+                                    ${this.contactoInfo.whatsapp ? `
+                                    <a href="${this.contactoInfo.whatsapp}" target="_blank" class="btn btn-outline-success btn-sm social-btn d-flex align-items-center">
                                         <i class="bi bi-whatsapp me-2"></i>
                                         <span class="d-none d-md-inline">WhatsApp</span>
-                                    </a>
+                                    </a>` : ''}
                                 </div>
+                            ` : `
+                                <div class="text-center py-3">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                </div>
+                            `}
                             </div>
                         </div>
                     </div>
