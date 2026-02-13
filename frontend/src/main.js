@@ -83,6 +83,72 @@ globalStyles.textContent = `
         color: white;
     }
     
+    /* Formularios responsivos */
+    .form-control, .form-select {
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+    
+    .form-label {
+        font-weight: 500;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Cards responsivos */
+    .card {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Mejoras para móviles */
+    @media (max-width: 768px) {
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        
+        .card-body {
+            padding: 1.5rem 1rem;
+        }
+        
+        .btn-lg {
+            padding: 12px 20px;
+            font-size: 1rem;
+        }
+    }
+    
+    /* Espaciado consistente */
+    .mb-3 {
+        margin-bottom: 1.25rem !important;
+    }
+    
+    /* Alertas responsivas */
+    .alert {
+        border-radius: 8px;
+        border: none;
+        padding: 1rem 1.25rem;
+    }
+    
+    /* Textos de ayuda */
+    .form-text {
+        font-size: 0.875rem;
+        color: #6c757d;
+        margin-top: 0.375rem;
+    }
+    
     .card {
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     }

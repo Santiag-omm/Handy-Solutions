@@ -28,7 +28,7 @@ export class RegisterView {
                                 
                                 <form id="registerForm">
                                     <div class="mb-3">
-                                        <label class="form-label">Nombre completo</label>
+                                        <label class="form-label">${t('auth.name')}</label>
                                         <input type="text" name="name" class="form-control" required>
                                     </div>
                                     <div class="mb-3">
@@ -38,10 +38,10 @@ export class RegisterView {
                                     <div class="mb-3">
                                         <label class="form-label">${t('auth.password')}</label>
                                         <input type="password" name="password" class="form-control" required minlength="8">
-                                        <div class="form-text">Mínimo 8 caracteres</div>
+                                        <div class="form-text">${t('auth.password_min')}</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Confirmar contraseña</label>
+                                        <label class="form-label">${t('auth.password_confirm')}</label>
                                         <input type="password" name="password_confirmation" class="form-control" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary w-100">${t('auth.register.submit')}</button>

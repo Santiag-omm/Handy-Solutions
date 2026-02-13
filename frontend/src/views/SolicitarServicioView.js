@@ -47,35 +47,35 @@ export class SolicitarServicioView {
                                 
                                 <form id="solicitudForm">
                                     <div class="mb-3">
-                                        <label class="form-label">Servicio requerido *</label>
+                                        <label class="form-label">${t('request.service')} *</label>
                                         <select name="servicio_id" class="form-select" required>
-                                            <option value="">Selecciona un servicio</option>
+                                            <option value="">${t('request.service_select')}</option>
                                             ${this.renderServiciosOptions()}
                                         </select>
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label class="form-label">Descripción del problema *</label>
+                                        <label class="form-label">${t('request.description')} *</label>
                                         <textarea name="descripcion" class="form-control" rows="4" required 
-                                                placeholder="Describe detalladamente el problema o servicio que necesitas..."></textarea>
+                                                placeholder="${t('request.description_placeholder')}"></textarea>
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label class="form-label">Dirección donde se requiere el servicio *</label>
+                                        <label class="form-label">${t('request.address')} *</label>
                                         <input type="text" name="direccion" class="form-control" required 
-                                               placeholder="Calle, número, colonia, ciudad...">
+                                               placeholder="${t('request.address_placeholder')}">
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label class="form-label">Teléfono de contacto *</label>
+                                        <label class="form-label">${t('request.phone')} *</label>
                                         <input type="tel" name="telefono" class="form-control" required 
-                                               placeholder="555-123-4567">
+                                               placeholder="${t('request.phone_placeholder')}">
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label class="form-label">Fecha preferida para el servicio *</label>
+                                        <label class="form-label">${t('request.date')} *</label>
                                         <input type="date" name="fecha_preferida" class="form-control" required>
-                                        <div class="form-text">Selecciona una fecha futura</div>
+                                        <div class="form-text">${t('request.date_placeholder')}</div>
                                     </div>
                                     
                                     <div class="d-grid">
