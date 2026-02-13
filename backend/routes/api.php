@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\GaleriaController;
 use App\Http\Controllers\Api\SolicitudController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\FaqController;
+use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
 // Rutas públicas
@@ -12,6 +13,9 @@ Route::get('/servicios', [ServicioController::class, 'index']);
 Route::get('/servicios/{slug}', [ServicioController::class, 'show']);
 Route::get('/galeria', [GaleriaController::class, 'index']);
 Route::get('/faq', [FaqController::class, 'index']);
+
+// Ruta de contacto
+Route::post('/contacto', [ContactoController::class, 'enviar']);
 
 // Rutas de autenticación
 Route::post('/login', [AuthController::class, 'login']);

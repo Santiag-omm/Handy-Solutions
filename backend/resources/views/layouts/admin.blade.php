@@ -25,10 +25,11 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.tecnicos.index') }}">Técnicos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.clientes.index') }}">Clientes</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.zonas.index') }}">Zonas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admin.contactos.index') }}">Contactos</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('admin.account.edit') }}">Mi cuenta</a></li>
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="http://localhost:5174" target="_blank">Ver sitio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ env('FRONTEND_URL', 'http://localhost:5174') }}" target="_blank">Ver sitio</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Salir</a></li>
                 </ul>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>

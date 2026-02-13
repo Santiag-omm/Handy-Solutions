@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\ClienteController;
+use App\Http\Controllers\Admin\ContactoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrdenTrabajoController;
 use App\Http\Controllers\Admin\PagoController;
@@ -39,6 +40,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::resource('tecnicos', TecnicoController::class)->except(['show']);
         Route::get('clientes', [ClienteController::class, 'index'])->name('clientes.index');
         Route::resource('zonas', ZonaController::class)->only(['index', 'store', 'update', 'destroy']);
+        
+        Route::get('contactos', [ContactoController::class, 'index'])->name('contactos.index');
 
         Route::get('solicitudes', [SolicitudAdminController::class, 'index'])->name('solicitudes.index');
         Route::get('solicitudes/{solicitud}', [SolicitudAdminController::class, 'show'])->name('solicitudes.show');
