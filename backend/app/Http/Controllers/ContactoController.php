@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactoMail;
+use App\Models\Contacto;
 
 class ContactoController extends Controller
 {
@@ -30,11 +31,19 @@ class ContactoController extends Controller
                 'mensaje.max' => 'El mensaje no puede exceder los 2000 caracteres',
             ]);
 
+            // Guardar en base de datos
+            $contacto = Contacto::create([
+                'nombre' => $validated['nombre'],
+                'email' => $validated['email'],
+                'telefono' => $validated['telefono'],
+                'asunto' => $validated['asunto'],
+                'mensaje' => $validated['mensaje'],
+                'estado' => 'pendiente',
+                'fecha_envio' => now(),
+            ]);
+
             // Enviar correo (simulado por ahora)
             // Mail::to('info@handysolutions.com')->send(new ContactoMail($validated));
-            
-            // Guardar en base de datos (opcional)
-            // \App\Models\Contacto::create($validated);
 
             return response()->json([
                 'success' => true,

@@ -42,6 +42,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::resource('zonas', ZonaController::class)->only(['index', 'store', 'update', 'destroy']);
         
         Route::get('contactos', [ContactoController::class, 'index'])->name('contactos.index');
+        Route::get('contactos/{contacto}', [ContactoController::class, 'show'])->name('contactos.show');
+        Route::put('contactos/{contacto}/estado', [ContactoController::class, 'updateEstado'])->name('contactos.updateEstado');
+        Route::delete('contactos/{contacto}', [ContactoController::class, 'destroy'])->name('contactos.destroy');
+        Route::post('contactos/marcar-leidos', [ContactoController::class, 'marcarLeidos'])->name('contactos.marcarLeidos');
+        Route::post('contactos/eliminar-multiples', [ContactoController::class, 'eliminarMultiples'])->name('contactos.eliminarMultiples');
 
         Route::get('solicitudes', [SolicitudAdminController::class, 'index'])->name('solicitudes.index');
         Route::get('solicitudes/{solicitud}', [SolicitudAdminController::class, 'show'])->name('solicitudes.show');
