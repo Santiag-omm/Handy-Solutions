@@ -43,7 +43,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <span>Solicitudes recientes</span>
-                <a href="{{ route('admin.solicitudes.index') }}" class="btn btn-sm btn-outline-primary">Ver todas</a>
+                <a href="{{ route('solicitudes.index') }}" class="btn btn-sm btn-outline-primary">Ver todas</a>
             </div>
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
