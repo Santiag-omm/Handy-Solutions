@@ -46,12 +46,19 @@ export class Router {
         if (!app) return;
 
         try {
-            if (typeof this.currentRoute === 'function') {
+            // Si es una clase (constructor function), crear instancia
+            if (typeof this.currentRoute === 'function' && this.currentRoute.prototype) {
                 const instance = new this.currentRoute();
-                if (instance.init) {
+                if (typeof instance.init === 'function') {
                     await instance.init();
                 }
-            } else if (typeof this.currentRoute === 'object' && this.currentRoute.init) {
+            } 
+            // Si es una función simple, ejecutarla
+            else if (typeof this.currentRoute === 'function') {
+                this.currentRoute();
+            }
+            // Si es un objeto con método init
+            else if (typeof this.currentRoute === 'object' && typeof this.currentRoute.init === 'function') {
                 await this.currentRoute.init();
             }
         } catch (error) {
