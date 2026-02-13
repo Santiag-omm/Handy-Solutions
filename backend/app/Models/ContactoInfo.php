@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContactoInfo extends Model
 {
+    protected $table = 'contacto_info';
+    
     protected $fillable = [
         'direccion',
         'telefono1',
