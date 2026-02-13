@@ -80,7 +80,6 @@ globalStyles.textContent = `
     }
     
     .hero {
-        background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
         color: white;
     }
     

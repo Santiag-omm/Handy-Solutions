@@ -37,7 +37,7 @@ export class HomeView {
             ${this.getNavbarHTML()}
             
             <main class="container flex-grow-1 py-4">
-                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=600&fit=crop&auto=format'); background-size: cover; background-position: center; color: white;">
+                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=1200&h=600&fit=crop&auto=format'); background-size: cover; background-position: center; color: white;">
                     <h1 class="display-4 fw-bold text-white">${t('home.hero.title')}</h1>
                     <p class="lead text-white">${t('home.hero.subtitle')}</p>
                     <p class="text-white-50">${t('home.hero.desc')}</p>
