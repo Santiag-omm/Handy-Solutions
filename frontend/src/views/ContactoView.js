@@ -1,6 +1,7 @@
 // Vista de Contacto
 import { t, languageSelectorHTML } from '../i18n.js';
 import { contactoService } from '../services/contactoService.js';
+import { Footer } from '../components/footer.js';
 
 export class ContactoView {
     constructor() {
@@ -115,7 +116,7 @@ export class ContactoView {
                 </div>
             </main>
 
-            ${this.getFooterHTML()}
+            ${Footer.getHTML()}
         `;
     }
 
@@ -159,16 +160,7 @@ export class ContactoView {
         `;
     }
 
-    getFooterHTML() {
-        return `
-            <footer class="bg-dark text-light py-4 mt-auto">
-                <div class="container text-center">
-                    <p class="mb-0">&copy; ${new Date().getFullYear()} HANDY SOLUTIONS. Soluciones de reparación en el hogar.</p>
-                </div>
-            </footer>
-        `;
-    }
-
+    
     isAuthenticated() {
         return localStorage.getItem('token') !== null;
     }

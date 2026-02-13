@@ -149,6 +149,59 @@ globalStyles.textContent = `
         margin-top: 0.375rem;
     }
     
+    /* Footer responsivo */
+    footer {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%) !important;
+    }
+    
+    footer h5 {
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+    
+    footer .text-light-50 {
+        color: rgba(255, 255, 255, 0.7) !important;
+        transition: color 0.3s ease;
+    }
+    
+    footer .hover-primary:hover {
+        color: #3498db !important;
+    }
+    
+    footer .hover-success:hover {
+        color: #28a745 !important;
+    }
+    
+    footer a {
+        transition: color 0.3s ease;
+    }
+    
+    footer .bi {
+        transition: transform 0.2s ease;
+    }
+    
+    footer a:hover .bi {
+        transform: scale(1.1);
+    }
+    
+    /* Footer mobile */
+    @media (max-width: 768px) {
+        footer {
+            padding-top: 3rem !important;
+            padding-bottom: 2rem !important;
+        }
+        
+        footer .col-md-6,
+        footer .col-md-12 {
+            text-align: center !important;
+        }
+        
+        footer .d-flex {
+            justify-content: center !important;
+        }
+    }
+    
     .card {
         transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     }

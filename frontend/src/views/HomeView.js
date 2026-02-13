@@ -2,6 +2,7 @@
 import { serviciosService, galeriaService } from '../services/services';
 import { BACKEND_URL } from '../services/api.js';
 import { t, languageSelectorHTML } from '../i18n.js';
+import { Footer } from '../components/footer.js';
 
 export class HomeView {
     constructor() {
@@ -56,7 +57,7 @@ export class HomeView {
                 ${this.galeria.length > 0 ? this.renderGaleria() : ''}
             </main>
 
-            ${this.getFooterHTML()}
+            ${Footer.getHTML()}
         `;
     }
 

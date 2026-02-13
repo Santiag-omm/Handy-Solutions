@@ -30,7 +30,7 @@ export class ServiciosView {
         app.innerHTML = `
             ${this.getNavbarHTML()}
             
-            <main class="container flex-grow-1 py-4">
+            <main class="container flehttps://handysolutions.up.railway.app/#/contactox-grow-1 py-4">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1>${t('services.title')}</h1>
                     ${this.isAuthenticated() ? 
