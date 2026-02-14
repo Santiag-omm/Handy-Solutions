@@ -1,7 +1,8 @@
 // Vista de Servicios
+import { t, languageSelectorHTML } from '../i18n.js';
 import { serviciosService } from '../services/services';
 import { BACKEND_URL } from '../services/api.js';
-import { t, languageSelectorHTML } from '../i18n.js';
+import { imageService } from '../services/imageService.js';
 import { Footer } from '../components/footer.js';
 
 export class ServiciosView {
@@ -11,6 +12,9 @@ export class ServiciosView {
     }
 
     async init() {
+        // Precargar imágenes críticas
+        imageService.preloadCriticalImages();
+        
         await this.loadData();
         this.render();
         this.bindEvents();
@@ -62,20 +66,17 @@ export class ServiciosView {
 
         return this.servicios.map(servicio => `
             <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm servicio-card">
-                    ${servicio.imagen 
-                        ? `<img src="${BACKEND_URL}/storage/${servicio.imagen}" class="card-img-top" alt="${servicio.nombre}" style="height:200px;object-fit:cover" onerror="this.src='https://images.unsplash.com/photo-${this.getPlaceholderImage(servicio.nombre)}?w=400&h=300&fit=crop&auto=format'">`
-                        : `<img src="https://images.unsplash.com/photo-${this.getPlaceholderImage(servicio.nombre)}?w=400&h=300&fit=crop&auto=format" class="card-img-top" alt="${servicio.nombre}" style="height:200px;object-fit:cover">`
-                    }
+                <div class="card h-100 shadow-sm">
+                    ${imageService.generateImageHTML(
+                        servicio.imagen ? `${BACKEND_URL}/storage/${servicio.imagen}` : null,
+                        servicio.nombre,
+                        'card-img-top',
+                        'height:180px;object-fit:cover'
+                    )}
                     <div class="card-body">
                         <h5 class="card-title">${servicio.nombre}</h5>
-                        <p class="card-text">${this.truncateText(servicio.descripcion, 120)}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-primary fw-bold">$${servicio.precio_base || '0'}</span>
-                            <a class="btn btn-outline-primary btn-sm" href="#/solicitar-servicio">
-                                ${t('services.request')}
-                            </a>
-                        </div>
+                        <p class="card-text text-muted small">${this.truncateText(servicio.descripcion, 100)}</p>
+                        <a href="#/servicios/${servicio.slug}" class="btn btn-outline-primary btn-sm">Ver más</a>
                     </div>
                 </div>
             </div>

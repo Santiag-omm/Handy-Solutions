@@ -3,6 +3,7 @@ import { serviciosService, galeriaService } from '../services/services';
 import { BACKEND_URL } from '../services/api.js';
 import { t, languageSelectorHTML } from '../i18n.js';
 import { heroService } from '../services/heroService.js';
+import { imageService } from '../services/imageService.js';
 import { Footer } from '../components/footer.js';
 
 export class HomeView {
@@ -14,6 +15,9 @@ export class HomeView {
     }
 
     async init() {
+        // Precargar imágenes críticas
+        imageService.preloadCriticalImages();
+        
         await Promise.all([
             this.loadData(),
             this.loadHeroSettings()
@@ -53,7 +57,7 @@ export class HomeView {
             
             <main class="container flex-grow-1 py-4">
                 ${this.heroSettings && this.heroSettings.activo ? `
-                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${this.heroSettings.imagen_fondo}'); background-size: cover; background-position: center; color: white; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${imageService.getHeroImage(this.heroSettings.imagen_fondo)}'); background-size: cover; background-position: center; color: white; min-height: 400px; display: flex; align-items: center; justify-content: center;">
                     <h1 class="display-4 fw-bold text-white">${this.heroSettings.titulo}</h1>
                     <p class="lead text-white">${this.heroSettings.subtitulo}</p>
                     <p class="text-white-50">${this.heroSettings.descripcion}</p>
@@ -62,7 +66,7 @@ export class HomeView {
                     </a>
                 </section>
             ` : `
-                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=1200&h=600&fit=crop&auto=format'); background-size: cover; background-position: center; color: white; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${imageService.getHeroImage()}'); background-size: cover; background-position: center; color: white; min-height: 400px; display: flex; align-items: center; justify-content: center;">
                     <h1 class="display-4 fw-bold text-white">${t('home.hero.title')}</h1>
                     <p class="lead text-white">${t('home.hero.subtitle')}</p>
                     <p class="text-white-50">${t('home.hero.desc')}</p>
@@ -94,10 +98,12 @@ export class HomeView {
         return this.servicios.map(servicio => `
             <div class="col-md-6 col-lg-4">
                 <div class="card h-100 shadow-sm">
-                    ${servicio.imagen 
-                        ? `<img src="${BACKEND_URL}/storage/${servicio.imagen}" class="card-img-top" alt="${servicio.nombre}" style="height:180px;object-fit:cover" onerror="this.src='https://images.unsplash.com/photo-${this.getPlaceholderImage(servicio.nombre)}?w=400&h=300&fit=crop&auto=format'">`
-                        : `<img src="https://images.unsplash.com/photo-${this.getPlaceholderImage(servicio.nombre)}?w=400&h=300&fit=crop&auto=format" class="card-img-top" alt="${servicio.nombre}" style="height:180px;object-fit:cover">`
-                    }
+                    ${imageService.generateImageHTML(
+                        servicio.imagen ? `${BACKEND_URL}/storage/${servicio.imagen}` : null,
+                        servicio.nombre,
+                        'card-img-top',
+                        'height:180px;object-fit:cover'
+                    )}
                     <div class="card-body">
                         <h5 class="card-title">${servicio.nombre}</h5>
                         <p class="card-text text-muted small">${this.truncateText(servicio.descripcion, 80)}</p>
@@ -115,7 +121,12 @@ export class HomeView {
                 <div class="row g-3">
                     ${this.galeria.map(item => `
                         <div class="col-6 col-md-4">
-                            <img src="${BACKEND_URL}/storage/${item.imagen}" alt="${item.titulo}" class="img-fluid rounded shadow-sm" style="height:180px;width:100%;object-fit:cover" onerror="this.src='https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400&h=300&fit=crop&auto=format'">
+                            ${imageService.generateImageHTML(
+                                `${BACKEND_URL}/storage/${item.imagen}`,
+                                item.titulo,
+                                'img-fluid rounded shadow-sm',
+                                'height:180px;width:100%;object-fit:cover'
+                            )}
                         </div>
                     `).join('')}
                 </div>
