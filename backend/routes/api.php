@@ -26,6 +26,15 @@ Route::get('/contacto-info', function () {
     ]);
 });
 
+// Ruta para obtener configuración del hero
+Route::get('/hero-settings', function () {
+    $settings = \App\Models\HeroSetting::getSettings();
+    return response()->json([
+        'success' => true,
+        'data' => $settings
+    ]);
+});
+
 // Rutas de autenticación
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);

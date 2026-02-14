@@ -2,19 +2,33 @@
 import { serviciosService, galeriaService } from '../services/services';
 import { BACKEND_URL } from '../services/api.js';
 import { t, languageSelectorHTML } from '../i18n.js';
+import { heroService } from '../services/heroService.js';
 import { Footer } from '../components/footer.js';
 
 export class HomeView {
     constructor() {
         this.servicios = [];
         this.galeria = [];
+        this.heroSettings = null;
         this.init();
     }
 
     async init() {
-        await this.loadData();
+        await Promise.all([
+            this.loadData(),
+            this.loadHeroSettings()
+        ]);
         this.render();
         this.bindEvents();
+    }
+
+    async loadHeroSettings() {
+        try {
+            const response = await heroService.getSettings();
+            this.heroSettings = response.data;
+        } catch (error) {
+            console.error('Error al cargar configuración del hero:', error);
+        }
     }
 
     async loadData() {
@@ -38,6 +52,16 @@ export class HomeView {
             ${this.getNavbarHTML()}
             
             <main class="container flex-grow-1 py-4">
+                ${this.heroSettings && this.heroSettings.activo ? `
+                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${this.heroSettings.imagen_fondo}'); background-size: cover; background-position: center; color: white; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                    <h1 class="display-4 fw-bold text-white">${this.heroSettings.titulo}</h1>
+                    <p class="lead text-white">${this.heroSettings.subtitulo}</p>
+                    <p class="text-white-50">${this.heroSettings.descripcion}</p>
+                    <a href="${this.heroSettings.enlace_boton}" class="btn btn-warning btn-lg mt-3">
+                        <i class="bi bi-tools"></i> ${this.heroSettings.texto_boton}
+                    </a>
+                </section>
+            ` : `
                 <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=1200&h=600&fit=crop&auto=format'); background-size: cover; background-position: center; color: white; min-height: 400px; display: flex; align-items: center; justify-content: center;">
                     <h1 class="display-4 fw-bold text-white">${t('home.hero.title')}</h1>
                     <p class="lead text-white">${t('home.hero.subtitle')}</p>
@@ -46,6 +70,7 @@ export class HomeView {
                         <i class="bi bi-tools"></i> ${t('nav.request_service')}
                     </a>
                 </section>
+            `}
 
                 <section class="mb-5">
                     <h2 class="h3 mb-4">${t('home.services.title')}</h2>

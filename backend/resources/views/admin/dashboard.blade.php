@@ -3,7 +3,19 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<h1 class="mb-4">Dashboard</h1>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+    <h1 class="h2 mb-0">Dashboard</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <a href="{{ route('admin.hero_settings.edit') }}" class="btn btn-sm btn-outline-warning">
+                <i class="bi bi-image"></i> Editar Hero
+            </a>
+            <a href="{{ route('admin.contacto_info.edit') }}" class="btn btn-sm btn-outline-info">
+                <i class="bi bi-pencil"></i> Editar Contacto
+            </a>
+        </div>
+    </div>
+</div>
 <div class="row g-3 mb-4">
     <div class="col-md-6 col-xl-3">
         <div class="card border-primary">
