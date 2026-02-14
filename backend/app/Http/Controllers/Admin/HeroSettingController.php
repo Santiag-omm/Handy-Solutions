@@ -29,11 +29,14 @@ class HeroSettingController extends Controller
             'imagen_fondo' => 'nullable|url|max:500',
             'texto_boton' => 'nullable|string|max:50',
             'enlace_boton' => 'nullable|string|max:255',
-            'activo' => 'boolean',
         ]);
 
+        // Manejar el checkbox activo (si no viene, es false)
+        $data = $request->all();
+        $data['activo'] = $request->has('activo') ? true : false;
+
         $heroSettings = HeroSetting::getSettings();
-        $heroSettings->update($request->all());
+        $heroSettings->update($data);
 
         return redirect()->route('admin.hero_settings.edit')
             ->with('success', 'Configuración del hero actualizada correctamente.');
