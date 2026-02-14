@@ -7,9 +7,6 @@
     <h1 class="h2 mb-0">Dashboard</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-            <a href="{{ route('admin.hero_settings.edit') }}" class="btn btn-sm btn-outline-warning">
-                <i class="bi bi-image"></i> Editar Hero
-            </a>
             <a href="{{ route('admin.contacto_info.edit') }}" class="btn btn-sm btn-outline-info">
                 <i class="bi bi-pencil"></i> Editar Contacto
             </a>
