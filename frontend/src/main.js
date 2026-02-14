@@ -71,8 +71,13 @@ globalStyles.textContent = `
         min-height: 100vh;
         display: flex;
         flex-direction: column;
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    /* Fallback para hero section */
+    .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     }
     
     main {

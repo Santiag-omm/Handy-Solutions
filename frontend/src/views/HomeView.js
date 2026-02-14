@@ -38,7 +38,7 @@ export class HomeView {
             ${this.getNavbarHTML()}
             
             <main class="container flex-grow-1 py-4">
-                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=1200&h=600&fit=crop&auto=format'); background-size: cover; background-position: center; color: white;">
+                <section class="hero rounded-3 p-5 mb-5 text-center position-relative overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=1200&h=600&fit=crop&auto=format'); background-size: cover; background-position: center; color: white; min-height: 400px; display: flex; align-items: center; justify-content: center;">
                     <h1 class="display-4 fw-bold text-white">${t('home.hero.title')}</h1>
                     <p class="lead text-white">${t('home.hero.subtitle')}</p>
                     <p class="text-white-50">${t('home.hero.desc')}</p>
@@ -90,7 +90,7 @@ export class HomeView {
                 <div class="row g-3">
                     ${this.galeria.map(item => `
                         <div class="col-6 col-md-4">
-                            <img src="${BACKEND_URL}/storage/${item.imagen}" alt="${item.titulo}" class="img-fluid rounded shadow-sm" style="height:180px;width:100%;object-fit:cover">
+                            <img src="${BACKEND_URL}/storage/${item.imagen}" alt="${item.titulo}" class="img-fluid rounded shadow-sm" style="height:180px;width:100%;object-fit:cover" onerror="this.src='https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400&h=300&fit=crop&auto=format'">
                         </div>
                     `).join('')}
                 </div>
