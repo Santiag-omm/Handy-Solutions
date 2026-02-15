@@ -31,16 +31,16 @@
                 <label class="form-label">Imagen</label>
                 <input type="file" name="imagen" class="form-control" accept="image/*">
                 <small class="text-muted">O usa una URL externa (recomendado para evitar que se pierda en deploys)</small>
-                @if($servicio->imagen || $servicio->imagen_url)
+                @if($servicio->imagen || (isset($servicio->imagen_url) && $servicio->imagen_url))
                     <div class="mt-2">
-                        <img src="{{ $servicio->imagen_url ?: asset('storage/' . $servicio->imagen) }}" alt="{{ $servicio->nombre }}" style="max-width:280px;width:100%;height:auto;object-fit:cover;border-radius:12px;">
+                        <img src="{{ (isset($servicio->imagen_url) && $servicio->imagen_url) ? $servicio->imagen_url : asset('storage/' . $servicio->imagen) }}" alt="{{ $servicio->nombre }}" style="max-width:280px;width:100%;height:auto;object-fit:cover;border-radius:12px;">
                         <br><small class="text-muted">Imagen actual</small>
                     </div>
                 @endif
             </div>
             <div class="mb-3">
                 <label class="form-label">URL de Imagen (Opcional)</label>
-                <input type="url" name="imagen_url" class="form-control" placeholder="https://images.unsplash.com/photo-..." value="{{ old('imagen_url', $servicio->imagen_url) }}">
+                <input type="url" name="imagen_url" class="form-control" placeholder="https://images.unsplash.com/photo-..." value="{{ old('imagen_url', isset($servicio->imagen_url) ? $servicio->imagen_url : '') }}">
                 <small class="text-muted">URL de imagen externa (Unsplash, Pexels, etc.) - No se pierde en deploys</small>
             </div>
             <div class="mb-3">

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class Servicio extends Model
@@ -46,8 +47,8 @@ class Servicio extends Model
      */
     public function getImagenUrlAttribute()
     {
-        // Si hay URL externa, usarla
-        if ($this->imagen_url) {
+        // Verificar si el campo imagen_url existe en la tabla
+        if (Schema::hasColumn('servicios', 'imagen_url') && $this->imagen_url) {
             return $this->imagen_url;
         }
         
