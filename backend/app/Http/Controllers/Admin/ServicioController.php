@@ -21,9 +21,14 @@ class ServicioController extends Controller
         return view('admin.servicios.index', compact('servicios'));
     }
 
-    public function create(): View
+    public function create()
     {
-        return view('admin.servicios.create');
+        try {
+            return view('admin.servicios.create');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.servicios.index')
+                ->with('error', 'Error al cargar formulario de creación: ' . $e->getMessage());
+        }
     }
 
     public function store(Request $request): RedirectResponse
