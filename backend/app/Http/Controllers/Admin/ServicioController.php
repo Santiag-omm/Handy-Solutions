@@ -24,8 +24,8 @@ class ServicioController extends Controller
     public function create()
     {
         try {
-            // Usar vista simplificada temporalmente para evitar errores
-            return view('admin.servicios.create-simple');
+            // Usar vista básica sin imagen_url para evitar errores
+            return view('admin.servicios.create-basic');
         } catch (\Exception $e) {
             return redirect()->route('admin.servicios.index')
                 ->with('error', 'Error al cargar formulario de creación: ' . $e->getMessage());
@@ -94,8 +94,8 @@ class ServicioController extends Controller
     public function edit(Servicio $servicio)
     {
         try {
-            // Usar vista simplificada temporalmente para evitar errores
-            return view('admin.servicios.edit-simple', compact('servicio'));
+            // Usar vista básica sin imagen_url para evitar errores
+            return view('admin.servicios.edit-basic', compact('servicio'));
         } catch (\Exception $e) {
             // Si hay un error, redirigir con mensaje
             return redirect()->route('admin.servicios.index')
