@@ -15,7 +15,7 @@ export class HomeView {
     }
 
     async init() {
-        // Precargar imágenes críticas
+        // Precargar imágenes críticas con múltiples fuentes
         imageService.preloadCriticalImages();
         
         await Promise.all([

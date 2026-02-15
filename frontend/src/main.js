@@ -64,6 +64,12 @@ const bootstrapJS = document.createElement('script');
 bootstrapJS.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js';
 document.head.appendChild(bootstrapJS);
 
+// Cargar servicio de imágenes con fallback robusto
+const imageFallbackScript = document.createElement('script');
+imageFallbackScript.src = './src/services/imageFallbackService.js';
+imageFallbackScript.type = 'module';
+document.head.appendChild(imageFallbackScript);
+
 // Estilos globales
 const globalStyles = document.createElement('style');
 globalStyles.textContent = `
