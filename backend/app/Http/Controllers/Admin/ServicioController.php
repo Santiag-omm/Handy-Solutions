@@ -85,9 +85,15 @@ class ServicioController extends Controller
         return redirect()->route('admin.servicios.index')->with('success', 'Servicio creado.');
     }
 
-    public function edit(Servicio $servicio): View
+    public function edit(Servicio $servicio)
     {
-        return view('admin.servicios.edit', compact('servicio'));
+        try {
+            return view('admin.servicios.edit', compact('servicio'));
+        } catch (\Exception $e) {
+            // Si hay un error, redirigir con mensaje
+            return redirect()->route('admin.servicios.index')
+                ->with('error', 'Error al cargar el servicio: ' . $e->getMessage());
+        }
     }
 
     public function update(Request $request, Servicio $servicio): RedirectResponse

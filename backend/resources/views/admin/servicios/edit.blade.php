@@ -31,9 +31,9 @@
                 <label class="form-label">Imagen</label>
                 <input type="file" name="imagen" class="form-control" accept="image/*">
                 <small class="text-muted">O usa una URL externa (recomendado para evitar que se pierda en deploys)</small>
-                @if($servicio->imagen || (isset($servicio->imagen_url) && $servicio->imagen_url))
+                @if($servicio->imagen)
                     <div class="mt-2">
-                        <img src="{{ (isset($servicio->imagen_url) && $servicio->imagen_url) ? $servicio->imagen_url : asset('storage/' . $servicio->imagen) }}" alt="{{ $servicio->nombre }}" style="max-width:280px;width:100%;height:auto;object-fit:cover;border-radius:12px;">
+                        <img src="{{ asset('storage/' . $servicio->imagen) }}" alt="{{ $servicio->nombre }}" style="max-width:280px;width:100%;height:auto;object-fit:cover;border-radius:12px;">
                         <br><small class="text-muted">Imagen actual</small>
                     </div>
                 @endif
