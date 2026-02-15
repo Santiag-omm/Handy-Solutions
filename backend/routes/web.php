@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ContactoController;
 use App\Http\Controllers\Admin\ContactoInfoController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSettingController;
+use App\Http\Controllers\Admin\ImageValidationController;
 use App\Http\Controllers\Admin\OrdenTrabajoController;
 use App\Http\Controllers\Admin\PagoController;
 use App\Http\Controllers\Admin\ServicioController;
@@ -55,6 +56,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         
         Route::get('hero-settings', [HeroSettingController::class, 'edit'])->name('hero_settings.edit');
         Route::put('hero-settings', [HeroSettingController::class, 'update'])->name('hero_settings.update');
+        
+        Route::post('validate-image-url', [ImageValidationController::class, 'validateImageUrl'])->name('validate_image_url');
 
         Route::get('solicitudes', [SolicitudAdminController::class, 'index'])->name('solicitudes.index');
         Route::get('solicitudes/{solicitud}', [SolicitudAdminController::class, 'show'])->name('solicitudes.show');
