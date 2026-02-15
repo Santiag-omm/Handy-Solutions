@@ -33,7 +33,7 @@
                 <small class="text-muted">O usa una URL externa (recomendado para evitar que se pierda en deploys)</small>
                 @if($servicio->imagen || $servicio->imagen_url)
                     <div class="mt-2">
-                        <img src="{{ $servicio->imagen_url ?: Storage::url($servicio->imagen) }}" alt="{{ $servicio->nombre }}" style="max-width:280px;width:100%;height:auto;object-fit:cover;border-radius:12px;">
+                        <img src="{{ $servicio->imagen_url ?: asset('storage/' . $servicio->imagen) }}" alt="{{ $servicio->nombre }}" style="max-width:280px;width:100%;height:auto;object-fit:cover;border-radius:12px;">
                         <br><small class="text-muted">Imagen actual</small>
                     </div>
                 @endif
