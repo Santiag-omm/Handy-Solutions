@@ -59,9 +59,52 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label">URL de Imagen de Fondo</label>
-                        <input type="url" name="imagen_fondo" class="form-control" value="{{ $heroSettings->imagen_fondo }}" placeholder="https://images.unsplash.com/photo-...">
-                        <small class="text-muted">URL de la imagen de fondo (recomendado: 1200x600px)</small>
+                        <label class="form-label">Imagen de Fondo</label>
+                        <input type="url" name="imagen_fondo" id="imagen_fondo" class="form-control" value="{{ $heroSettings->imagen_fondo }}" placeholder="https://images.unsplash.com/photo-...">
+                        <small class="text-muted">URL de la imagen de fondo (recomendado: 1200x600px) O usa las imágenes sugeridas abajo</small>
+                        
+                        <!-- Imágenes Sugeridas -->
+                        <div class="mt-3">
+                            <label class="form-label text-muted">Imágenes Sugeridas (Click para usar)</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm w-100" onclick="selectImage('https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=1200&h=600&fit=crop&auto=format')">
+                                        <img src="https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=200&h=100&fit=crop&auto=format" class="img-fluid rounded mb-1" style="max-height: 60px; object-fit: cover;">
+                                        <br><small>Herramientas</small>
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm w-100" onclick="selectImage('https://images.unsplash.com/photo-1621905251189-08b3e6a9b1d3?w=1200&h=600&fit=crop&auto=format')">
+                                        <img src="https://images.unsplash.com/photo-1621905251189-08b3e6a9b1d3?w=200&h=100&fit=crop&auto=format" class="img-fluid rounded mb-1" style="max-height: 60px; object-fit: cover;">
+                                        <br><small>Técnico</small>
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm w-100" onclick="selectImage('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=600&fit=crop&auto=format')">
+                                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=200&h=100&fit=crop&auto=format" class="img-fluid rounded mb-1" style="max-height: 60px; object-fit: cover;">
+                                        <br><small>Plomería</small>
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm w-100" onclick="selectImage('https://images.unsplash.com/photo-1581094358584-9c5e5f9a8f9b?w=1200&h=600&fit=crop&auto=format')">
+                                        <img src="https://images.unsplash.com/photo-1581094358584-9c5e5f9a8f9b?w=200&h=100&fit=crop&auto=format" class="img-fluid rounded mb-1" style="max-height: 60px; object-fit: cover;">
+                                        <br><small>Electricidad</small>
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm w-100" onclick="selectImage('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&h=600&fit=crop&auto=format')">
+                                        <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=200&h=100&fit=crop&auto=format" class="img-fluid rounded mb-1" style="max-height: 60px; object-fit: cover;">
+                                        <br><small>Pintura</small>
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary btn-sm w-100" onclick="selectImage('https://images.unsplash.com/photo-mGZX2MOPR-s?w=1200&h=600&fit=crop&auto=format')">
+                                        <img src="https://images.unsplash.com/photo-mGZX2MOPR-s?w=200&h=100&fit=crop&auto=format" class="img-fluid rounded mb-1" style="max-height: 60px; object-fit: cover;">
+                                        <br><small>Madera</small>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="row">
@@ -171,3 +214,85 @@ function updatePreview() {
 document.querySelector('input[name="imagen_fondo"]').addEventListener('input', updatePreview);
 </script>
 @endsection
+
+@push('scripts')
+<script>
+function selectImage(imageUrl) {
+    // Poner la URL en el campo
+    document.getElementById('imagen_fondo').value = imageUrl;
+    
+    // Actualizar vista previa
+    updatePreview(imageUrl);
+    
+    // Mostrar feedback visual
+    showFeedback('Imagen seleccionada: ' + getImageName(imageUrl));
+}
+
+function updatePreview(imageUrl) {
+    const preview = document.querySelector('.hero-preview');
+    if (preview) {
+        preview.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${imageUrl}')`;
+    }
+}
+
+function getImageName(url) {
+    const imageNames = {
+        'photo-1581092796363-535d3b8c6d91': 'Herramientas',
+        'photo-1621905251189-08b3e6a9b1d3': 'Técnico',
+        'photo-1581094794329-c8112a89af12': 'Plomería',
+        'photo-1581094358584-9c5e5f9a8f9b': 'Electricidad',
+        'photo-1579546929518-9e396f3cc809': 'Pintura',
+        'photo-mGZX2MOPR-s': 'Madera',
+        'photo-1578662996442-48f60103fc96': 'Reparaciones'
+    };
+    
+    for (const [key, name] of Object.entries(imageNames)) {
+        if (url.includes(key)) {
+            return name;
+        }
+    }
+    return 'Imagen seleccionada';
+}
+
+function showFeedback(message) {
+    // Crear o actualizar el mensaje de feedback
+    let feedback = document.getElementById('image-feedback');
+    if (!feedback) {
+        feedback = document.createElement('div');
+        feedback.id = 'image-feedback';
+        feedback.className = 'alert alert-success alert-sm mt-2';
+        document.getElementById('imagen_fondo').parentNode.appendChild(feedback);
+    }
+    
+    feedback.innerHTML = `<i class="bi bi-check-circle"></i> ${message}`;
+    feedback.style.display = 'block';
+    
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+        feedback.style.display = 'none';
+    }, 3000);
+}
+
+// Actualizar vista previa cuando se cambia manualmente el campo
+document.addEventListener('DOMContentLoaded', function() {
+    const imagenInput = document.getElementById('imagen_fondo');
+    if (imagenInput) {
+        imagenInput.addEventListener('input', function() {
+            if (this.value) {
+                updatePreview(this.value);
+            }
+        });
+        
+        // Actualizar vista previa con la imagen actual al cargar
+        if (imagenInput.value) {
+            updatePreview(imagenInput.value);
+        }
+    }
+});
+
+// Función existente para compatibilidad
+function setHeroImage(imageUrl) {
+    selectImage(imageUrl);
+}
+</script>
+@endpush
