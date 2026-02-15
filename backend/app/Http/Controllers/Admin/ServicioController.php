@@ -75,6 +75,11 @@ class ServicioController extends Controller
             $validated['imagen'] = $request->file('imagen')->store('servicios', 'public');
         }
 
+        // Manejar URL externa de imagen
+        if ($request->filled('imagen_url')) {
+            $validated['imagen_url'] = $request->imagen_url;
+        }
+
         Servicio::create($validated);
 
         return redirect()->route('admin.servicios.index')->with('success', 'Servicio creado.');
@@ -123,16 +128,26 @@ class ServicioController extends Controller
                 },
             ],
             'icono' => ['nullable', 'string', 'max:50'],
+            'imagen_url' => ['nullable', 'url', 'max:500'],
             'orden' => ['nullable', 'integer', 'min:0'],
             'activo' => ['boolean'],
         ]);
 
+        $validated['slug'] = Str::slug($validated['nombre']);
         $validated['activo'] = $request->boolean('activo');
 
         if ($request->hasFile('imagen')) {
             $validated['imagen'] = $request->file('imagen')->store('servicios', 'public');
         } else {
             unset($validated['imagen']);
+        }
+
+        // Manejar URL externa de imagen
+        if ($request->filled('imagen_url')) {
+            $validated['imagen_url'] = $request->imagen_url;
+        } elseif (!$request->hasFile('imagen')) {
+            // Si no hay nueva imagen ni URL, mantener la existente
+            unset($validated['imagen_url']);
         }
 
         $servicio->update($validated);

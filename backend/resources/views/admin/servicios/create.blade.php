@@ -29,6 +29,12 @@
             <div class="mb-3">
                 <label class="form-label">Imagen</label>
                 <input type="file" name="imagen" class="form-control" accept="image/*">
+                <small class="text-muted">O usa una URL externa (recomendado para evitar que se pierda en deploys)</small>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">URL de Imagen (Opcional)</label>
+                <input type="url" name="imagen_url" class="form-control" placeholder="https://images.unsplash.com/photo-..." value="{{ old('imagen_url') }}">
+                <small class="text-muted">URL de imagen externa (Unsplash, Pexels, etc.) - No se pierde en deploys</small>
             </div>
             <div class="mb-3">
                 <label class="form-label">Orden</label>
