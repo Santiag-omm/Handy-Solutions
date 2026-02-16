@@ -64,11 +64,29 @@ const bootstrapJS = document.createElement('script');
 bootstrapJS.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js';
 document.head.appendChild(bootstrapJS);
 
-// Cargar servicio de imágenes con fallback robusto
-const imageFallbackScript = document.createElement('script');
-imageFallbackScript.src = './src/services/imageFallbackService.js';
-imageFallbackScript.type = 'module';
-document.head.appendChild(imageFallbackScript);
+// Sistema simple de imágenes sin módulos complejos
+window.imageService = {
+    generateImageHTML: function(src, alt, className, style = '', type = 'services', subtype = null) {
+        // Si no hay src, usar imagen por defecto
+        if (!src) {
+            src = this.getDefaultImage(type, subtype);
+        }
+        
+        return `<img src="${src}" alt="${alt}" class="${className}" style="${style}" 
+                onerror="this.src='${this.getDefaultImage(type, subtype)}'">`;
+    },
+    
+    getDefaultImage: function(type, subtype) {
+        // Imágenes por defecto según el tipo
+        const defaults = {
+            'services': 'https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=400&h=300&fit=crop&auto=format',
+            'gallery': 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=400&h=300&fit=crop&auto=format',
+            'hero': 'https://images.unsplash.com/photo-1581092796363-535d3b8c6d91?w=1200&h=600&fit=crop&auto=format'
+        };
+        
+        return defaults[type] || defaults['services'];
+    }
+};
 
 // Estilos globales
 const globalStyles = document.createElement('style');
