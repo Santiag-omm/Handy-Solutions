@@ -15,9 +15,7 @@ export class HomeView {
     }
 
     async init() {
-        // Precargar imágenes críticas con múltiples fuentes
-        imageService.preloadCriticalImages();
-        
+        // Cargar datos sin precarga para evitar warnings
         await Promise.all([
             this.loadData(),
             this.loadHeroSettings()
